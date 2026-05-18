@@ -1,0 +1,56 @@
+﻿using Microsoft.AspNetCore.Mvc;
+using SchoolProject.Api.Base;
+using SchoolProject.Core.Features.Students.Commands.Models;
+using SchoolProject.Core.Features.Students.Queries.Models;
+using SchoolProject.Data.AppMetaData;
+
+namespace SchoolProject.Api.Controllers
+{
+    [ApiController]
+    public class StudentController : AppControllerBase
+    {
+
+
+        [HttpGet(Router.StudentRouter.List)]
+        public async Task<IActionResult> GetStudentList()
+        {
+            var response = await Mediator.Send(new GetStudentListQuery());
+            return Ok(response);
+        }
+
+        [HttpGet(Router.StudentRouter.Paginated)]
+        public async Task<IActionResult> Paginated([FromQuery] GetStudentPaginatedListQuery query)
+        {
+            var response = await Mediator.Send(query);
+            return Ok(response);
+        }
+
+
+        [HttpGet(Router.StudentRouter.GetByID)]
+        public async Task<IActionResult> GetStudentByID([FromRoute] int id)
+        {
+            return NewResult(await Mediator.Send(new GetStudentByIDQuery(id)));
+        }
+
+        [HttpPost(Router.StudentRouter.Create)]
+        public async Task<IActionResult> Create([FromBody] AddStudentCommand command)
+        {
+            var response = await Mediator.Send(command);
+            return NewResult(response);
+        }
+
+        [HttpPut(Router.StudentRouter.Edit)]
+        public async Task<IActionResult> Edit([FromBody] EditStudentCommand command)
+        {
+            var response = await Mediator.Send(command);
+            return NewResult(response);
+        }
+
+        [HttpDelete(Router.StudentRouter.Delete)]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var response = await Mediator.Send(new DeleteStudentCommand(id));
+            return NewResult(response);
+        }
+    }
+}

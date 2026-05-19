@@ -14,5 +14,7 @@
         public const string UnAuthorized = "UnAuthorized";
         public const string MaxLengthis100 = "MaxLengthis100";
         public const string IsExist = "IsExist";
+        public const string IsNotExist = "IsNotExist";
+        public const string DepartmentId = "DepartmentId";
     }
 }

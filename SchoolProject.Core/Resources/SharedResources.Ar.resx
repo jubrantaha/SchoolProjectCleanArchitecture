@@ -159,4 +159,10 @@
   <data name="MaxLengthis100" xml:space="preserve">
     <value>يجب ان لا يزيد طول النص عن 100</value>
   </data>
+  <data name="IsNotExist" xml:space="preserve">
+    <value>غير موجود</value>
+  </data>
+  <data name="DepartmentId" xml:space="preserve">
+    <value>رقم القسم</value>
+  </data>
 </root>

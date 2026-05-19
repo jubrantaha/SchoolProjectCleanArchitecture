@@ -159,4 +159,10 @@
   <data name="MaxLengthis100" xml:space="preserve">
     <value>The Max Length is 100</value>
   </data>
+  <data name="IsNotExist" xml:space="preserve">
+    <value>is Not Exist</value>
+  </data>
+  <data name="DepartmentId" xml:space="preserve">
+    <value>Department Id</value>
+  </data>
 </root>

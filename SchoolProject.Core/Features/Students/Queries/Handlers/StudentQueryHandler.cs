@@ -6,9 +6,7 @@ using SchoolProject.Core.Features.Students.Queries.Models;
 using SchoolProject.Core.Features.Students.Queries.Results;
 using SchoolProject.Core.Resources;
 using SchoolProject.Core.Wrappers;
-using SchoolProject.Data.Entities;
 using SchoolProject.Service.Apstracts;
-using System.Linq.Expressions;
 
 namespace SchoolProject.Infrustructure.Features.Students.Queries.Handelrs
 {
@@ -55,10 +53,10 @@ namespace SchoolProject.Infrustructure.Features.Students.Queries.Handelrs
 
         public async Task<PaginatedResult<GetStudentPaginatedListResponse>> Handle(GetStudentPaginatedListQuery request, CancellationToken cancellationToken)
         {
-            Expression<Func<Student, GetStudentPaginatedListResponse>> expression = e => new GetStudentPaginatedListResponse(e.StudID, e.GetLocalized(e.NameAr, e.NameEn), e.Address, e.GetLocalized(e.Department.DNameAr, e.Department.DNameEn));
+            //Expression<Func<Student, GetStudentPaginatedListResponse>> expression = e => new GetStudentPaginatedListResponse(e.StudID, e.GetLocalized(e.NameAr, e.NameEn), e.Address, e.GetLocalized(e.Department.DNameAr, e.Department.DNameEn));
             //var querable = studentService.GetStudentsQuarable();
             var FilterQuery = studentService.FilterStudentPaginatedQuerable(request.OrederBy, request.Search);
-            var paginatedList = await FilterQuery.Select(expression).ToPaginatedListAsync(request.PageNumber, request.PageSize);
+            var paginatedList = await mapper.ProjectTo<GetStudentPaginatedListResponse>(FilterQuery).ToPaginatedListAsync(request.PageNumber, request.PageSize);
             paginatedList.Meta = new { Count = paginatedList.Data.Count() };
             return paginatedList;
         }

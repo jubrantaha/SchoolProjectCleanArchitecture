@@ -33,7 +33,8 @@ IServiceCollection serviceCollection = builder.Services.AddDbContext<Application
 #region Dependency Injection
 builder.Services.AddInfrustructureDependencies()
                  .AddServiceDependencies()
-                 .AddCoreDependencies();
+                 .AddCoreDependencies()
+                 .AddServiceRegisteration();
 #endregion
 
 #region Localization

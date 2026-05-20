@@ -9,12 +9,6 @@ namespace SchoolProject.Api.Controllers
     public class DepartmentController : AppControllerBase
     {
 
-        //[HttpGet(Router.DepartmentRouter.GetByID)]
-        //public async Task<IActionResult> GetDepartmentByID([FromRoute] int id)
-        //{
-        //    return NewResult(await Mediator.Send(new GetDepartmentByIDQuery(id)));
-        //}
-
         [HttpGet(Router.DepartmentRouter.GetByID)]
         public async Task<IActionResult> GetDepartmentByID([FromQuery] GetDepartmentByIDQuery query)
         {

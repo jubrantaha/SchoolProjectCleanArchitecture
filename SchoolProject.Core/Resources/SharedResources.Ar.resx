@@ -165,4 +165,16 @@
   <data name="DepartmentId" xml:space="preserve">
     <value>رقم القسم</value>
   </data>
+  <data name="PasswordNotEqualsConfirmPass" xml:space="preserve">
+    <value>الباسورد والباسورد المؤكد يجب ان يكونوا متساويين</value>
+  </data>
+  <data name="EmailIsExist" xml:space="preserve">
+    <value>الإيميل الذي أدخلته مستخدم مسبقاً</value>
+  </data>
+  <data name="UserNameIsExist" xml:space="preserve">
+    <value>أسم المستخدم هذا موجود مسبقاً</value>
+  </data>
+  <data name="FaileTodAddUser" xml:space="preserve">
+    <value>حدث خطأ أثناء إضافة المستخدم</value>
+  </data>
 </root>

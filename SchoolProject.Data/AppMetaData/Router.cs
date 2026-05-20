@@ -21,12 +21,13 @@
         public static class DepartmentRouter
         {
             public const string prefix = Roule + "Department";
-            public const string List = prefix + "/List";
             public const string GetByID = prefix + "/Id";
+        }
+
+        public static class UserRouter
+        {
+            public const string prefix = Roule + "User";
             public const string Create = prefix + "/Create";
-            public const string Edit = prefix + "/Edit";
-            public const string Delete = prefix + "/Delete";
-            public const string Paginated = prefix + "/Paginated";
         }
     }
 }

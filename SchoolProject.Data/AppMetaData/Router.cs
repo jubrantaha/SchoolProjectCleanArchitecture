@@ -24,10 +24,13 @@
             public const string GetByID = prefix + "/Id";
         }
 
-        public static class UserRouter
+        public static class ApplicationUserRouter
         {
             public const string prefix = Roule + "User";
             public const string Create = prefix + "/Create";
+            public const string Paginated = prefix + "/Paginated";
+            public const string GetByID = prefix + SingleRoute;
+
         }
     }
 }

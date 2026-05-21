@@ -30,6 +30,7 @@
             public const string Create = prefix + "/Create";
             public const string Paginated = prefix + "/Paginated";
             public const string GetByID = prefix + SingleRoute;
+            public const string Edit = prefix + "/Edit";
 
         }
     }

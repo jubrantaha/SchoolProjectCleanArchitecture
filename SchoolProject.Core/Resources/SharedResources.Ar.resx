@@ -180,4 +180,7 @@
   <data name="UpdateFailed" xml:space="preserve">
     <value>حدث خطأ اثناء تحديث البيانات</value>
   </data>
+  <data name="DeletedFailed" xml:space="preserve">
+    <value>حدث خطأ اثناء حذف البيانات</value>
+  </data>
 </root>

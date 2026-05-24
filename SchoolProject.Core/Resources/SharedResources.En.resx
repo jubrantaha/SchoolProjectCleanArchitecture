@@ -180,4 +180,7 @@
   <data name="UpdateFailed" xml:space="preserve">
     <value>Update Operation Failed</value>
   </data>
+  <data name="DeletedFailed" xml:space="preserve">
+    <value>Deleted Operation Failed</value>
+  </data>
 </root>

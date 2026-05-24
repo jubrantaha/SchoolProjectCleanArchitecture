@@ -32,6 +32,7 @@
             public const string GetByID = prefix + SingleRoute;
             public const string Edit = prefix + "/Edit";
             public const string Delete = prefix + "/{id}";
+            public const string ChangePassword = prefix + "/Change-Password";
         }
     }
 }

@@ -183,4 +183,10 @@
   <data name="DeletedFailed" xml:space="preserve">
     <value>حدث خطأ اثناء حذف البيانات</value>
   </data>
+  <data name="ChangePasswordFailed" xml:space="preserve">
+    <value>حدث خطأ اثناء تغيير الباسورد</value>
+  </data>
+  <data name="ChangePasswordSuccess" xml:space="preserve">
+    <value>تم تغيير كلمة المرور بنجاح</value>
+  </data>
 </root>

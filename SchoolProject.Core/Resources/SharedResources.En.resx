@@ -183,4 +183,10 @@
   <data name="DeletedFailed" xml:space="preserve">
     <value>Deleted Operation Failed</value>
   </data>
+  <data name="ChangePasswordFailed" xml:space="preserve">
+    <value>Change Password Failed</value>
+  </data>
+  <data name="ChangePasswordSuccess" xml:space="preserve">
+    <value>Change Password Success</value>
+  </data>
 </root>

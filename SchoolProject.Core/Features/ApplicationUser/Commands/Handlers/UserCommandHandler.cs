@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
 using SchoolProject.Core.Bases;
 using SchoolProject.Core.Features.ApplicationUser.Commands.Models;
@@ -12,7 +13,8 @@ namespace SchoolProject.Core.Features.ApplicationUser.Commands.Handlers
     public class UserCommandHandler : ResponseHandler,
                                       IRequestHandler<AddUserCommand, Response<string>>,
                                       IRequestHandler<EditUserCommand, Response<string>>,
-                                      IRequestHandler<DeleteUserCommand, Response<string>>
+                                      IRequestHandler<DeleteUserCommand, Response<string>>,
+                                      IRequestHandler<ChangeUserPasswordCommand, Response<string>>
     {
         #region Fields
         private readonly IStringLocalizer<SharedResources> stringLocalizer;
@@ -61,6 +63,10 @@ namespace SchoolProject.Core.Features.ApplicationUser.Commands.Handlers
             if (oldUser == null) return NotFound<string>();
             // Mapping
             var newUser = mapper.Map(request, oldUser);
+            // If UserName is Exist
+            var userByUserName = await userManager.Users.FirstOrDefaultAsync(x => x.UserName == newUser.UserName && x.Id != newUser.Id);
+            // UserName is Exist
+            if (userByUserName != null) return BadRequest<string>(stringLocalizer[SharedResourcesKeys.UserNameIsExist]);
             // Update
             var result = await userManager.UpdateAsync(newUser);
             // Create = Failed => message
@@ -81,6 +87,33 @@ namespace SchoolProject.Core.Features.ApplicationUser.Commands.Handlers
             if (!result.Succeeded) return BadRequest<string>(stringLocalizer[SharedResourcesKeys.DeletedFailed]);
             // Deleted = Success => message
             return Success((string)stringLocalizer[SharedResourcesKeys.Deleted]);
+
+        }
+
+        public async Task<Response<string>> Handle(ChangeUserPasswordCommand request, CancellationToken cancellationToken)
+        {
+            // Get User
+            var user = await userManager.FindByIdAsync(request.Id.ToString());
+            // if Not Exist return NotFound
+            if (user == null) return NotFound<string>();
+            // Change User Password 
+
+
+            //var passUser = await userManager.HasPasswordAsync(user);
+            //await userManager.RemovePasswordAsync(user);
+            //var result2 = await userManager.AddPasswordAsync(user, request.NewPassword);
+            //// Filed => message
+            //if (!result2.Succeeded) return BadRequest<string>(stringLocalizer[SharedResourcesKeys.ChangePasswordFailed] + ":" + result2.Errors.FirstOrDefault().Description);
+            //// Success => message
+            //return Success((string)stringLocalizer[SharedResourcesKeys.ChangePasswordSuccess]);
+
+            var result1 = await userManager.ChangePasswordAsync(user, request.CurrentPassword, request.NewPassword);
+            // Failed => message
+            if (!result1.Succeeded) return BadRequest<string>(stringLocalizer[SharedResourcesKeys.ChangePasswordFailed] + ":" + result1.Errors.FirstOrDefault().Description);
+            // Success => message
+            return Success((string)stringLocalizer[SharedResourcesKeys.ChangePasswordSuccess]);
+
+
 
         }
         #endregion
